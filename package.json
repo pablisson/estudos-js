@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-projeto-barber",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:pablisson/nodejs-projeto-barber.git",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}
