@@ -1,3 +1,11 @@
+/**
+ * 
+ * O repositorio seria algo semelhante ao nosso DAO
+ * 
+ * ╔════════╗    ╔════════════╗    ╔═══════╗
+ * ║ models ║ ←→ ║ Repository ║ ←→ ║ Route ║
+ * ╚════════╝    ╚════════════╝    ╚═══════╝
+ */
 import { isEqual } from 'date-fns'
 import Appointment from '../models/Appointment';
 
