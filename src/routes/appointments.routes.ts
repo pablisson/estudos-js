@@ -5,12 +5,19 @@ import { response, Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { startOfHour, parseISO } from  'date-fns';
 
+// Verifica a autenticação 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 import AppointmentRepository from '../repositories/AppointmentsRepository';
 import CreateAppointmentService from '../services/CreateAppointmentService';
 
 const appointmentsRouter = Router();
 
+// Antes de seguir as rotas ele verificará se o token é válido para que o usuário possa acessar as rotas
+appointmentsRouter.use(ensureAuthenticated);
+
 appointmentsRouter.get('/', async (request, response) => {
+  console.log(request.user);
   const appointmentsRepository = getCustomRepository(AppointmentRepository);
   const appointments = await appointmentsRepository.find();
 
