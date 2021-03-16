@@ -5,22 +5,20 @@
  const sessionRouter = Router();
  
  sessionRouter.post('/', async (request, response) => {
-   try {
-      const{ email, password } = request.body;
 
-      const authenticateUser = new AuthenticateUserService();
+    const{ email, password } = request.body;
 
-      const { user, token } = await authenticateUser.execute({
-        email,
-        password,
-      });
+    const authenticateUser = new AuthenticateUserService();
 
-      delete user.password;
+    const { user, token } = await authenticateUser.execute({
+      email,
+      password,
+    });
 
-      return response.json({ user, token });
-   } catch (error) {
-     return response.status(400).json({ error: error.message });
-   }
+    delete user.password;
+
+    return response.json({ user, token });
+
  });
  
  export default sessionRouter; 

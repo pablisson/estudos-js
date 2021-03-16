@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import { decode, verify } from 'jsonwebtoken';
 import authConfig from '../config/auth';
 
+import AppError from '../erros/AppError';
+
 interface TokenPayLoad {
   iat: number;
   exp: number;
@@ -16,7 +18,7 @@ export default function ensureAuthenticated(
     const authHeader = request.headers.authorization;
 
     if(!authHeader){
-      throw new Error('JWT token is missing');
+      throw new AppError('JWT token is missing', 401);
     }
 
     //Bearer suidhasudh
@@ -34,6 +36,6 @@ export default function ensureAuthenticated(
       };
       return next();
     } catch (error) {
-     throw new Error('Invalid JWT token'); 
+     throw new AppError('Invalid JWT token', 401); 
     }
 }
